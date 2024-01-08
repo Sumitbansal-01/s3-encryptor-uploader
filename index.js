@@ -21,6 +21,8 @@ class S3EncryptorUploader {
         const _iv = iv || this.iv
         const _password = password || this.password
 
+        if (typeof data !== 'string' && !Buffer.isBuffer(data)) data = JSON.stringify(data)
+
         const response = await encryption({ data, iv: _iv, password: _password });
         return response;
     }
@@ -32,7 +34,7 @@ class S3EncryptorUploader {
 
         if (!_iv || !_password || !data)
             throw new Error(errors.missingParameter)
-
+        
         const response = await decryption({ encryptedData: data, iv: _iv, password: _password });
         return response;
     }
@@ -45,9 +47,7 @@ class S3EncryptorUploader {
         if (!_bucketName || !_accessKeyId || !_secretAccessKey || !fileName || !data)
             throw new Error(errors.missingParameter)
 
-        if(typeof data==='object') data=JSON.stringify(data)
-
-        console.log({ _bucketName, _accessKeyId, _secretAccessKey, fileName, data })
+        if (typeof data !== 'string' && !Buffer.isBuffer(data)) throw new Error(errors.acceptStringBuffer)
 
         const response = await s3Upload({ bucketName: _bucketName, accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey, fileName, data, isMetaData });
         return response;
@@ -68,14 +68,12 @@ class S3EncryptorUploader {
 
     async encyptAndUpload({ bucketName, accessKeyId, secretAccessKey, fileName, data, isMetaData, iv, password }) {
         const encryptResponse = await this.encypt({ data, iv, password })
-        console.log(encryptResponse)
         const uploadResponse = await this.upload({ bucketName, accessKeyId, secretAccessKey, fileName, data: encryptResponse?.data, isMetaData })
         return { uploadResponse: uploadResponse, ...encryptResponse }
     }
 
     async decryptAndDownload({ bucketName, accessKeyId, secretAccessKey, fileName, iv, password }) {
         const downloadResponse = await this.download({ bucketName, accessKeyId, secretAccessKey, fileName })
-        console.log({ downloadResponse })
         const decryptionResponse = await this.decrypt({ data: downloadResponse.Body, iv, password });
         return decryptionResponse
     }
