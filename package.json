@@ -46,10 +46,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sumitbansal-01/S3EncryptorUploader.git"
+    "url": "git+https://github.com/Sumitbansal-01/s3-encryptor-uploader.git"
   },
   "bugs": {
-    "url": "https://github.com/Sumitbansal-01/S3EncryptorUploader/issues"
+    "url": "https://github.com/Sumitbansal-01/s3-encryptor-uploader/issues"
   },
-  "homepage": "https://github.com/Sumitbansal-01/S3EncryptorUploader#readme"
+  "homepage": "https://github.com/Sumitbansal-01/s3-encryptor-uploader#readme"
 }
