@@ -1,6 +1,5 @@
 # s3-encryptor-uploader
 
-
 This module allows you to easily and securely upload the data on Amazon S3. By this, you can encrypt and decrypt the data, upload and download the data from S3 and also you can do encryption,  compression, and upload together.
 
 ### Examples
@@ -75,7 +74,7 @@ obj.setS3Credentials({bucketName, accessKeyId, secretAccessKey});
 Performing an encryption, compression and upload together.
 
 ```
-obj.encyptAndUpload({bucketName, secretAccessKey, fileName, data, isMetaData, iv, password})
+obj.encyptAndUpload({bucketName, accessKeyId, secretAccessKey, fileName, data, isMetaData, iv, password})
 .then(e=> console.log(e))
 .catch(e=> console.error(e))
 ```
