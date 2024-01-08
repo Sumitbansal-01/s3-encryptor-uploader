@@ -1,12 +1,12 @@
 # s3-encryptor-uploader
 
-This module allows you to easily and securely upload the data on Amazon S3. By this, you can encrypt and decrypt the data, upload and download the data from S3 and also you can do encryption,  compression, and upload together.
+16214186This module allows you to easily and securely upload the data on Amazon S3. By this, you can encrypt and decrypt the data, upload and download the data from S3 and also you can do encryption,  compression, and upload together.
 
-### Examples
+## Examples
 
 Below are some examples.
 
-###### Encryption
+#### Encryption
 
 Performing encryption on the data, while also compressing the data in between
 
@@ -20,7 +20,7 @@ obj.encypt({data : "Hello World", password: "xyz", iv:require("crypto").randomBy
 
 Here data is mandatory if "password" and "iv" are not present it will autogenerate
 
-###### Decryption
+#### Decryption
 
 ```
 const obj = new S3EncryptorUploader();
@@ -29,7 +29,7 @@ obj.decrypt({data, password: "xyz", iv:require("crypto").randomBytes(16) })
 	.catch(e=> console.error(e));
 ```
 
-###### Set Password
+#### Set Password
 
 If you don't want to pass the password again and again you can set the password and then at the time of encryption and decryption it by default use this password if the password is not given. It will not autogenerate the password.
 
@@ -37,13 +37,13 @@ If you don't want to pass the password again and again you can set the password 
 obj.setPassword("xyz");
 ```
 
-###### Set IV
+#### Set IV
 
 ```
 obj.setIv(iv);
 ```
 
-###### S3 Upload
+#### S3 Upload
 
 This will upload the data to S3
 
@@ -53,7 +53,7 @@ obj.upload({bucketName, accessKeyId, secretAccessKey, fileName, data, isMetaData
 	.catch(e=> console.error(e));
 ```
 
-###### S3 Download
+#### S3 Download
 
 ```
 obj.download({bucketName, accessKeyId, secretAccessKey, fileName})
@@ -61,7 +61,7 @@ obj.download({bucketName, accessKeyId, secretAccessKey, fileName})
 	.catch(e=> console.error(e));
 ```
 
-###### Set S3 Credentials
+#### Set S3 Credentials
 
 Same as the password and iv for setting the default credentials. These credentials will be used when you have not provided credentials at the time of upload and download
 
@@ -69,7 +69,7 @@ Same as the password and iv for setting the default credentials. These credentia
 obj.setS3Credentials({bucketName, accessKeyId, secretAccessKey});
 ```
 
-###### Encrypt and Upload
+#### Encrypt and Upload
 
 Performing an encryption, compression and upload together.
 
@@ -79,7 +79,7 @@ obj.encyptAndUpload({bucketName, accessKeyId, secretAccessKey, fileName, data, i
 .catch(e=> console.error(e))
 ```
 
-###### Decrypt and Upload
+#### Decrypt and Upload
 
 ```
 obj.decryptAndDownload({bucketName, accessKeyId, secretAccessKey, fileName, iv, password})
