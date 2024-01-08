@@ -1,0 +1,55 @@
+{
+  "name": "s3-encryptor-uploader",
+  "version": "1.0.0",
+  "description": "Effortlessly manage your data on Amazon S3 with this npm package. Encrypt, decrypt, upload, and download securely. Seamlessly integrate gzip for efficient data compression. Your all-in-one solution for straightforward and secure S3 data operations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "S3 Encryption",
+    "S3 Decryption",
+    "S3 Upload",
+    "S3 Download",
+    "Amazon S3 Security",
+    "S3 Compression",
+    "S3 Decompression",
+    "Node.js S3 Package",
+    "Data Encryption npm",
+    "Data Upload to S3",
+    "Data Download from S3",
+    "Gzip Compression S3",
+    "Secure Data Transfer",
+    "S3",
+    "Encryption",
+    "Decryption",
+    "Upload",
+    "Download",
+    "Amazon S3",
+    "Node.js",
+    "Security",
+    "Gzip",
+    "Compression",
+    "npm",
+    "Utilities",
+    "Data Operations",
+    "Secure File Transfer"
+  ],
+  "author": "Sumit Bansal",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1525.0",
+    "generate-password": "^1.7.1",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sumitbansal-01/S3EncryptorUploader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sumitbansal-01/S3EncryptorUploader/issues"
+  },
+  "homepage": "https://github.com/Sumitbansal-01/S3EncryptorUploader#readme"
+}
