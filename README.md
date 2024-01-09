@@ -1,6 +1,6 @@
 # s3-encryptor-uploader
 
-16214186This module allows you to easily and securely upload the data on Amazon S3. By this, you can encrypt and decrypt the data, upload and download the data from S3 and also you can do encryption,  compression, and upload together.
+This module allows you to easily and securely upload the data on Amazon S3. By this, you can encrypt and decrypt the data, upload and download the data from S3 and also you can do encryption,  compression, and upload together.
 
 ## Examples
 
