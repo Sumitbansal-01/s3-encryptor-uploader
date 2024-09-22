@@ -1,27 +1,20 @@
-const { crypto, zlib } = require('../config/importModule')
+const { crypto, pako } = require('../config/importModule')
 
-async function decrypt({encryptedData, iv, password}) {
+async function decrypt({ encryptedData, iv, password }) {
 
   return new Promise((resolve, reject) => {
     try {
 
-      let decyptedData = ""
-
       const CIPHER_KEY = crypto.createHash('sha256').update(password).digest();
-
-      const unzip = zlib.createUnzip();
-      unzip.write(encryptedData)
-      unzip.end()
 
       const decipher = crypto.createDecipheriv('aes-256-cbc', CIPHER_KEY, iv);
 
-      decipher.on('data', (chunks) => decyptedData += chunks.toString())
+      let compressedData = decipher.update(encryptedData);
+      compressedData = Buffer.concat([compressedData, decipher.final()]);
 
-      decipher.on('end', () => {
-        resolve({decyptedData})
-      })
+      const unzip = pako.inflate(compressedData);
 
-      unzip.pipe(decipher)
+      resolve(unzip)
 
     } catch (err) {
 

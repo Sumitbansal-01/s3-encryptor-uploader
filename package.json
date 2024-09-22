@@ -41,7 +41,7 @@
   "dependencies": {
     "aws-sdk": "^2.1525.0",
     "generate-password": "^1.7.1",
-    "zlib": "^1.0.5"
+    "pako": "^2.1.0"
   },
   "devDependencies": {},
   "repository": {

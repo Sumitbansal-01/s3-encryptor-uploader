@@ -1,5 +1,5 @@
 module.exports = {
     crypto :  require('crypto'),
-    zlib : require('zlib'),
+    pako : require('pako'),
     aws : require('aws-sdk')
 };

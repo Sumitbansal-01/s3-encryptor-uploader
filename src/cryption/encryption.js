@@ -1,31 +1,24 @@
-const { crypto, zlib } = require('../config/importModule')
+const { crypto, pako } = require('../config/importModule')
 const generatePassword = require("../GeneratePassword/generatePassword")
 
-function encrypt({data, iv, password}) {
+function encrypt({ data, iv, password }) {
     return new Promise((resolve, reject) => {
         try {
 
-            const passphrase = password || generatePassword.getPassword(10, true);
+            const passphrase = password || (new generatePassword()).getPassword(10, true);
 
             const CIPHER_KEY = crypto.createHash('sha256').update(passphrase).digest();
-            
+
             const initialVector = iv || crypto.randomBytes(16);
 
             const cipher = crypto.createCipheriv('aes-256-cbc', CIPHER_KEY, initialVector);
 
-            const gzipStream = zlib.createGzip();
+            const compressedData = pako.deflate(data);
 
-            cipher.write(data)
+            let encryptedData = cipher.update(compressedData);
+            encryptedData = Buffer.concat([encryptedData, cipher.final()]);
 
-            cipher.end()
-
-            let zipData = Buffer.from('')
-
-            gzipStream.on('data', chunk => zipData = Buffer.concat([zipData, chunk]))
-
-            gzipStream.on('end', async () => resolve({data: zipData, iv:initialVector,  password: passphrase}))
-
-            cipher.pipe(gzipStream)
+            resolve({ data: encryptedData, password: passphrase, iv: initialVector })
 
         } catch (err) {
             reject(err)
